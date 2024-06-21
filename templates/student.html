@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: dodgerblue;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.profile-info {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-info h2 {
+    margin-top: 0;
+}
+
+.profile-info p {
+    margin: 0.5rem 0;
+}
+
+.back-btn {
+    background-color: dodgerblue;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+    background-color: rgb(8, 105, 203);
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Profile</h1>
+    </header>
+    <main class="profile">
+        <div class="profile-info">
+            <img src="{%IMAGE%}" alt="Student Profile Picture" class="profile-img">
+            <h2>{%STUDENTNAME%} {%STUDENTSURNAME%}</h2>
+            <p><strong>Score:</strong> {%SCORE%}</p>
+            <p><strong>Seria No:</strong> {%SERIANO%}</p>
+            <p><strong>Birth Date:</strong> {%BIRTHDATE%}</p>
+            <!-- <p><strong>Bio:</strong> {%BIO%}</p> -->
+            <a href="students-overview.html" class="back-btn">Students List 👉</a>
+        </div>
+    </main>
+</body>
+</html>
