@@ -81,7 +81,6 @@ background-color: rgb(8, 105, 203);
   </div>
 
   <script>
-    // Function to get URL parameter
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
       const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -89,25 +88,18 @@ background-color: rgb(8, 105, 203);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
-    // Determine the current sort order
     let currentSortOrder = getUrlParameter('sortOrder') || 'desc';
 
-    // Update button text based on current sort order
     const sortButton = document.getElementById('sort-score');
     sortButton.textContent = `Sort by Score (${currentSortOrder === 'asc' ? 'Ascending' : 'Descending'})`;
 
-    // Add event listener to the sort button
     sortButton.addEventListener('click', () => {
-      // Toggle sort order
       currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
 
-      // Reload the page with the updated sort order
       window.location.href = `/overview?sort=score&sortOrder=${currentSortOrder}`;
     });
 
-    // Add event listener to the top students button
     document.getElementById('top-students').addEventListener('click', () => {
-      // Reload the page to show top 5 students
       window.location.href = '/overview?top=5';
     });
   </script>
