@@ -1,84 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students List</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Overview</title>
+  <style>
+    body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f0f0f0;
 }
 
 header {
-    background-color: dodgerblue;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+background-color: dodgerblue;
+color: white;
+padding: 1rem;
+text-align: center;
 }
 
 .student-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+justify-content: center;
 }
 
 .student-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    transition: transform 0.2s;
-    width: 18%;
-    text-align: center;
-    padding-bottom: 1rem;
+background-color: white;
+border: 1px solid #ddd;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+overflow: hidden;
+transition: transform 0.2s;
+width: 18%;
+text-align: center;
+padding-bottom: 1rem;
 }
 
 .student-item:hover {
-    transform: scale(1.05);
+transform: scale(1.05);
 }
 
 .student-item img {
-    width: 80%;
-    height: 25vh;
-    object-fit: cover;
-    margin-top: 1rem;
+width: 80%;
+height: 25vh;
+object-fit: cover;
+margin-top: 1rem;
 }
 
 .student-info {
-    padding: 1rem;
+padding: 1rem;
 }
 
 .profile-btn {
-    background-color: dodgerblue;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 1rem;
-    display: inline-block;
-    transition: background-color 0.2s;
+background-color: dodgerblue;
+color: white;
+padding: 0.5rem 1rem;
+text-decoration: none;
+border-radius: 5px;
+margin-top: 1rem;
+display: inline-block;
+transition: background-color 0.2s;
 }
 
 .profile-btn:hover {
-    background-color: rgb(8, 105, 203);
+background-color: rgb(8, 105, 203);
 }
 
-    </style>
+</style>
 </head>
 <body>
-    <header>
-        <h1>Students</h1>
-    </header>
-    <div class="cards-container">
-        {%STUDENT_CARDS%}
-      </div>
+  <h1>Student Overview</h1>
+  <button id="sort-score">Sort by Score (Descending)</button>
+  <button id="top-students">Best Students</button>
+  <div id="student-cards">
+    {%STUDENT_CARDS%}
+  </div>
+
+  <script>
+    // Function to get URL parameter
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      const results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Determine the current sort order
+    let currentSortOrder = getUrlParameter('sortOrder') || 'desc';
+
+    // Update button text based on current sort order
+    const sortButton = document.getElementById('sort-score');
+    sortButton.textContent = `Sort by Score (${currentSortOrder === 'asc' ? 'Ascending' : 'Descending'})`;
+
+    // Add event listener to the sort button
+    sortButton.addEventListener('click', () => {
+      // Toggle sort order
+      currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+
+      // Reload the page with the updated sort order
+      window.location.href = `/overview?sort=score&sortOrder=${currentSortOrder}`;
+    });
+
+    // Add event listener to the top students button
+    document.getElementById('top-students').addEventListener('click', () => {
+      // Reload the page to show top 5 students
+      window.location.href = '/overview?top=5';
+    });
+  </script>
 </body>
 </html>
+
+
